@@ -1,0 +1,81 @@
+.stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0 32px;
+  overflow: hidden;
+}
+
+/* Decorative chevron lifted from the BX mark, bleeding off the right edge */
+.xBackground {
+  position: absolute;
+  top: 50%;
+  right: -6%;
+  transform: translateY(-50%);
+  width: clamp(420px, 62vw, 1104px);
+  aspect-ratio: 1.10385 / 1;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.92;
+}
+
+.xImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Centered content column (Framer "Page Width") */
+.pageWidth {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.logo {
+  width: clamp(220px, 24vw, 340px);
+  height: auto;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(48px, 11vw, 100px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: rgb(255, 255, 255);
+}
+
+/* Below the Framer tablet breakpoint, let the chevron sit behind the text */
+@media (max-width: 810px) {
+  .stage {
+    justify-content: flex-start;
+    padding: 0 24px;
+  }
+
+  .xBackground {
+    right: -28%;
+    width: clamp(340px, 96vw, 680px);
+    opacity: 0.4;
+  }
+}

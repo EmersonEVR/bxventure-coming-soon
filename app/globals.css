@@ -1,0 +1,43 @@
+:root {
+  /* Background radial gradient from the original Framer site */
+  --bg-gradient: radial-gradient(
+    88% 110% at 17.7% 19.6%,
+    rgb(41, 41, 41) 0%,
+    rgb(18, 18, 18) 100%
+  );
+
+  /*
+   * Produkt Regular (Commercial Type, licensed) is self-hosted and loaded via
+   * next/font/local in app/layout.tsx, which sets --font-produkt. The slab-serif
+   * stack remains as a fallback while the woff2 loads.
+   */
+  --font-display: var(--font-produkt), "Rockwell", "Roboto Slab", "Bitter",
+    Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Avoid a flash of the wrong color before the gradient paints */
+  background: #121212;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg-gradient);
+  color: rgb(255, 255, 255);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
