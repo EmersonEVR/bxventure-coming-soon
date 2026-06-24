@@ -12,6 +12,7 @@
 
 /* Decorative chevron lifted from the BX mark, bleeding off the right edge */
 .xBackground {
+  --x-opacity: 0.92;
   position: absolute;
   top: 50%;
   right: -6%;
@@ -20,7 +21,9 @@
   aspect-ratio: 1.10385 / 1;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.92;
+  opacity: var(--x-opacity);
+  /* Entrance animation (mirrors Framer's "appear" on the data-framer-appear-id) */
+  animation: x-appear 1s cubic-bezier(0.44, 0, 0.2, 1) both;
 }
 
 .xImage {
@@ -49,6 +52,30 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 28px;
+  /* Fade + rise in, slightly staggered after the chevron */
+  animation: box-appear 0.8s cubic-bezier(0.44, 0, 0.2, 1) 0.15s both;
+}
+
+@keyframes x-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(1.04);
+  }
+  to {
+    opacity: var(--x-opacity);
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@keyframes box-appear {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .logo {
@@ -74,8 +101,16 @@
   }
 
   .xBackground {
+    --x-opacity: 0.4;
     right: -28%;
     width: clamp(340px, 96vw, 680px);
-    opacity: 0.4;
+  }
+}
+
+/* Respect users who prefer reduced motion: show the resting state, no entrance */
+@media (prefers-reduced-motion: reduce) {
+  .xBackground,
+  .box {
+    animation: none;
   }
 }
